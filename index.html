@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paytm Payment QR Code Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+        }
+
+        .header {
+            background-color: #007bff;
+            padding: 15px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header img {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .overlay {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+
+        .overlay-content {
+            position: relative;
+            top: 25%;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .overlay a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 36px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .overlay a:hover,
+        .overlay a:focus {
+            color: #f1f1f1;
+        }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .overlay a {
+                font-size: 20px;
+            }
+            .overlay .closebtn {
+                font-size: 40px;
+                top: 15px;
+                right: 35px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .header img {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function openNav() {
+            document.getElementById("myNav").style.width = "100%";
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <img src="https://te.legra.ph/file/bec9b829f16345b24c9f9.png" alt="Icon">
+        <h1>Anshpreet Payment Gateway</h1>
+        <span class="hamburger" onclick="openNav()">&#9776;</span>
+    </div>
+
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <a href="#">Home</a>
+            <a href="#" data-page="about" onclick="showAboutMessage()">About</a>
+            <a href="https://etus.link/contactyougateway4242">Contact</a>
+        </div>
+    </div>
+
+    <!-- Rest of your code -->
+<script>
+        // Your existing JavaScript code here
+
+        function showAboutMessage() {
+            alert("This Page is made and Maintained by Anshpreet Singh. This page is intended for you to donate to help Ansh manage all expenses of building the website, maintaining servers, buying new equipment, and trying something new.");
+        }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paytm Payment QR Code Generator</title>
+    <style>
+        body {
+            background-color: #f0f8ff;
+        }
+
+        .button {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .qrCodeContainer {
+            text-align: center;
+            margin: 3px;
+        }
+
+        .qrCodeContainer img {
+            width: 500px;
+            height: 500px;
+            border: 3px solid #000;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        function generatePaymentLink() {
+            var amount = document.getElementById("amount").value;
+            var upiId = "7901981363@paytm";
+            var paymentLink = "upi://pay?pa=" + upiId + "&pn=Anshpreet Singh&mc=123456&tid=123456&tr=123456&tn=Payment%20to%20Anshpreet%20Singh&am=" + amount + "&cu=INR";
+
+            document.getElementById("paymentLink").innerHTML = '<a href="' + paymentLink + '" class="button" target="_blank">Make Payment</a>';
+            document.getElementById("qrCodeContainer").style.display = "block";
+
+            // Generate QR code
+            var qrCode = new QRCode(document.getElementById("qrCode"), {
+                text: paymentLink,
+                width: 300,
+                height: 300
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>Paytm Payment QR Code Generator</h1>
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" placeholder="Enter amount">
+    <button onclick="generatePaymentLink()" class="button">Generate Payment Link</button>
+
+    <h3>Payment Link:</h3>
+    <p id="paymentLink"></p>
+
+    <h3>Payment QR Code:</h3>
+    <div class="qrCodeContainer" id="qrCodeContainer" style="display: none;">
+        <div id="qrCode"></div>
+    </div>
+
+    <script>
+        // Press Enter key to generate payment link
+        $(document).ready(function () {
+            $('#amount').keypress(function (e) {
+                if (e.which === 13) {
+                    generatePaymentLink();
+                    return false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paytm Payment QR Code Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function getRandomColor() {
+            var colors = ['#007bff', '#C678DD', '#61BD6D', '#FFBB00', '#FF0000'];
+            var randomIndex = Math.floor(Math.random() * colors.length);
+            return colors[randomIndex];
+        }
+
+        function setThemeColor() {
+            var themeColor = getRandomColor();
+            var metaTag = document.querySelector('meta[name="theme-color"]');
+            metaTag.setAttribute('content', themeColor);
+            document.body.style.backgroundColor = themeColor;
+        }
+    </script>
+</head>
+<body onload="setThemeColor()">
+
+</body>
+</html>
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2FD9E7">
+  	
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paytm Payment QR Code Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding-bottom: 50px; /* Add padding to avoid content overlap with the footer */
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background-color: #f8f8f8;
+            text-align: center;
+            padding: 10px 0;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .secured-icon {
+            width: 50px;
+            height: 50px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <footer class="footer">
+        <img src="https://te.legra.ph/file/14ba96b06c24d4b268dd5.png" alt="Secured" class="secured-icon">
+        <span>Secured by DMCA</span> | &copy; Anshpreet 2023
+    </footer>
+</body>
+</html>
